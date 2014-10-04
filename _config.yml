@@ -1,0 +1,58 @@
+# Build settings
+markdown: redcarpet
+highlighter: pygments
+
+# Site settings
+title: "Loosely coupled"
+#description: > # this means to ignore newlines until "email:"
+#   A Jekyll theme - Medium inspired
+
+email: broeksem@lippman.lu
+#blog logo
+logo: "/assets/images/bb_logo.png"
+# blog cover
+cover: "/assets/images/cover-rope.jpg"
+
+name: 'Bertjan Broeksema'
+author: 'Bertjan Broeksema'
+author_image: "/assets/images/author.jpg"
+
+paginate:	5
+
+url: "http://bbroeksema.github.io" # the base hostname & protocol for your site
+baseurl: ""
+
+# social icons and sharing options
+social:
+#  - icon:	twitter
+#    url:	https://twitter.com/dirkfabisch
+#    desc: Follow me on twitter
+#    share_url: http://twitter.com/share
+#    share_title: ?text=
+#    share_link: "&amp;url="
+
+#  - icon:	facebook
+#    url:	https://facebook.com/???
+#    desc: Connect with me facebook
+#    share_url: //www.facebook.com/sharer.php
+#    share_title: ?t=
+#    share_link: "&amp;u="
+  - icon: linkedin
+    url: https://lu.linkedin.com/in/bbroeksema/
+    desc: Find me on linked in
+    share_url: https://www.linkedin.com/shareArticle?mini=true
+    share_title: "&amp;title="
+    share_link: "&amp;url="
+
+  - icon:	github
+    url:	https://github.com/bbroeksema
+    desc:	Fork me on github
+
+  - icon:	google-plus
+    url: https://plus.google.com/116835827224883282682/posts
+    desc:	Add me on google+
+    share_url: https://plus.google.com/share
+    share_title: "?title="
+    share_link: "&amp;url="
+
+
