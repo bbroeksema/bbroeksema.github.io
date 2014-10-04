@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <meta charset="utf-8">
+  <!-- (1) Optimize for mobile versions: http://goo.gl/EOpFl -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- (1) force latest IE rendering engine: bit.ly/1c8EiC9 -->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+  <title>A workflow for contributing to d3.parcoords.js</title>
+  <meta name="description" content="" />
+
+  <meta name="HandheldFriendly" content="True" />
+  <meta name="MobileOptimized" content="320" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+
+  <link rel="canonical" href="http://bbroeksema.github.io/2014/08/15/parcoords-git-workflow.html">
+
+  <link rel="shortcut icon" href="/assets/images/favicon.ico">
+<!--  <link rel="stylesheet" href=""> -->
+  <link rel="stylesheet" href="http://brick.a.ssl.fastly.net/Linux+Libertine:400,400i,700,700i/Open+Sans:400,400i,700,700i">
+  <link rel="stylesheet" href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css" >
+
+  <link rel="stylesheet" type="text/css" media="screen" href="/css/main.css" />
+  <link rel="stylesheet" type="text/css" media="print" href="/css/print.css" />
+  <script src="https://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+  <script type="text/javascript" src="/assets/js/jquery.fitvids.js"></script>
+  <script type="text/javascript" src="/assets/js/index.js"></script>
+  <script type="text/javascript" src="/assets/js/readingTime.min.js"></script>
+</head>
+
+  <body itemscope itemtype="http://schema.org/Article">
+    <!-- header start -->
+
+<a href="http://bbroeksema.github.io" class="logo-readium"><span class="logo" style="background-image: url(/assets/images/bb_logo.png)"></span></a>
+
+<!-- header end -->
+
+    <main class="content" role="main">
+      <article class="post">
+        
+        <div class="noarticleimage">
+          <div class="post-meta">
+            <h1 class="post-title">A workflow for contributing to d3.parcoords.js</h1>
+            <div class="cf post-meta-text">
+              <div class="author-image" style="background-image: url(/assets/images/author.jpg)">Blog Logo</div>
+              <h4 class="author-name" itemprop="author" itemscope itemtype="http://schema.org/Person"></h4>
+              on
+              <time datetime="2014-08-15T00:00:00+02:00">15 Aug 2014</time>
+              <!-- , tagged on <span class="post-tag-">, <a href="/tag/"></a></span> -->
+            </div>
+          </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        
+        <section class="post-content">
+          <div class="post-reading">
+            <span class="post-reading-time"></span> read
+          </div>
+          <a name="topofpage"></a>
+          <p>In this post I try to set out my workflow for contributing to the d3 parallel
+coordinates component by Kai Chang. The goal is to have my own clone, with
+various feature and fix branches, to have maximum freedom in development without
+interfering the progress of the main repository. However, this should not lead
+to a &#39;funny&#39; history. That is, the final contributions that go upstream should
+result in a linear history.</p>
+
+<h2>Initial setup</h2>
+
+<p>I have my own clone of <a href="https://github.com/syntagmatic/parallel-coordinates">syntagmatic/parallel-coordinates</a>
+at <a href="https://github.com/bbroeksema/parallel-coordinates">bbroeksema/parallel-coordinates</a>.
+First we create a clone on our local machine for development:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># git clone git@github.com:bbroeksema/parallel-coordinates.git
+# cd parallel-coordinates
+</code></pre></div>
+<p>Next we add the main repository of Kai as a second remote:</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">master # git remote add syntagmatic git@github.com:syntagmatic/parallel-coordinates.git
+master # git fetch syntagmatic
+</code></pre></div>
+<h2>Developing a feature or fix</h2>
+
+<p>Now we can start our development. We basically want to separate development of
+fixes, to keep all our commits as focussed as possible. One approach to reach
+this is by using feature branches. <strong>Note:</strong> this is an approach among many
+others I guess, but it fits my development style quite well.</p>
+
+<h3>Creating the branch</h3>
+
+<p>As an example, I will add a new feature: a function that returns the extents of
+the current brushes in the parallel-coordinates. To get started on this feature
+we first make sure that we are up to date with the latest changes from the main
+repository.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">master # git pull syntagmatic
+master # git push origin
+</code></pre></div>
+<p>At this point we have made sure that the master branch of our private clone is
+upto date with the main repository (both the local and the github hosted repos
+of our private clone).</p>
+
+<p>Now we can start development of our feature. To this extend we create a new
+branch with a name which is descriptive for the feature.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">master # git branch brushextents
+master # git checkout brushextents
+brushextents #
+</code></pre></div>
+<h3>Development</h3>
+
+<p>The developement of this new feature requires changes to axis.js. After I have
+done the required coding and testing, I add the new feature (in this case with
+a single commit) to my branch.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">brushextents # make clean
+brushextents # make
+brushextents # git add src/axis.js
+brushextents # git add d3.parcoords.js
+brushextents # git commit
+</code></pre></div>
+<p>The &#39;make clean&#39; and &#39;make&#39; commands are required to make sure that the file 
+d3.parcoords.js is containing our changes as well.</p>
+
+<h3>Creating the merge request</h3>
+
+<p>Before we push our feature branch to github, we want to make sure that it still
+applies to the current master of the main repo (syntagmatic).</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text">brushextents # git checkout master
+master # git pull syntagmatic
+master # git checkout brushextents
+brushextents # git rebase master
+</code></pre></div>
+<p>Your commits should cleanly apply on top of master. In case of conflicts you
+will have to modify your commits. Make sure that your feature branch in the end
+still has a linear history. Conflict handling is out of scope for this post.
+Now, we can push our local branch to github.</p>
+<div class="highlight"><pre><code class="language-text" data-lang="text"># git push
+</code></pre></div>
+        </section>
+        <footer class="post-footer">
+          <section class="share">
+            
+              
+                <a class="icon-linkedin" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=A+workflow+for+contributing+to+d3.parcoords.js&amp;url=http://bbroeksema.github.io/2014/08/15/parcoords-git-workflow"
+                  onclick="window.open(this.href, 'linkedin-share', 'width=550,height=255');return false;">
+                <i class="fa fa-linkedin"></i><span class="hidden">linkedin</span>
+                </a>
+              
+            
+              
+            
+              
+                <a class="icon-google-plus" href="https://plus.google.com/share?title=A+workflow+for+contributing+to+d3.parcoords.js&amp;url=http://bbroeksema.github.io/2014/08/15/parcoords-git-workflow"
+                  onclick="window.open(this.href, 'google-plus-share', 'width=550,height=255');return false;">
+                <i class="fa fa-google-plus"></i><span class="hidden">google-plus</span>
+                </a>
+              
+            
+          </section>
+        </footer>
+        <div class="bottom-teaser cf">
+          <div class="isLeft">
+            <h5 class="index-headline featured"><span>Written by</span></h5>
+            <section class="author">
+              <div class="author-image" style="background-image: url(/assets/images/author.jpg)">Blog Logo</div>
+              <h4>Bertjan Broeksema</h4>
+              <p class="bio"></p>
+              <hr>
+              <p class="published">Published <time datetime="2014-08-15 00:00">15 Aug 2014</time></p>
+            </section>
+          </div>
+          
+          <div class="isRight">
+            <h5 class="index-headline featured"><span>Supported by</span></h5>
+            <footer class="site-footer">
+              <section class="poweredby">Proudly published with <a href="http://jekyllrb.com"> Jekyll</a></section>
+              <a class="subscribe" href="/feed.xml"> <span class="tooltip"> <i class="fa fa-rss"></i> You should subscribe to my feed.</span></a>
+              <div class="inner">
+                <section class="copyright">All content copyright <a href="/">Bertjan Broeksema</a> &copy; 2014<br>All rights reserved.</section>
+              </div>
+            </footer>
+          </div>
+        </div>
+      </article>
+    </main>
+    <div class="bottom-closer">
+      <div class="background-closer-image"  style="background-image: url(/assets/images/cover-rope.jpg)">
+      Image
+    </div>
+    <div class="inner">
+      <h1 class="blog-title">Loosely coupled</h1>
+      <h2 class="blog-description"></h2>
+      <a href="/" class="btn">Back to Overview</a>
+    </div>
+    </div>
+  </body>
+</html>
