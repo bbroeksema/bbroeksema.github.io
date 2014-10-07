@@ -1,3 +1,11 @@
+# automation
+
+source: http://dictionary.reference.com/browse/automation?s=t
+
+the technique, method, or system of operating or controlling a process by highly
+automatic means, as by electronic devices, reducing human intervention to a
+minimum. 
+
 # Trickle down economics (image)
 
 source: https://plus.google.com/+TimElkins/posts/XSeFwQwrCPd?pid=6066026418303816418&oid=100556352810155350830
