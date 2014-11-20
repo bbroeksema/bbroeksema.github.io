@@ -24,13 +24,7 @@ baseurl: ""
 
 # social icons and sharing options
 social:
-  - icon:	twitter
-    url: https://twitter.com/LooslyCoupled
-    desc: Follow me on twitter
-    share_url: http://twitter.com/share
-    share_title: ?text=
-    share_link: "&amp;url="
-
+  
 #  - icon:	facebook
 #    url:	https://facebook.com/???
 #    desc: Connect with me facebook
@@ -47,6 +41,13 @@ social:
   - icon:	github
     url:	https://github.com/bbroeksema
     desc:	Fork me on github
+
+  - icon:	twitter
+    url: https://twitter.com/LooslyCoupled
+    desc: Follow me on twitter
+    share_url: http://twitter.com/share
+    share_title: ?text=
+    share_link: "&amp;url="
 
   - icon:	google-plus
     url: https://plus.google.com/116835827224883282682/posts
