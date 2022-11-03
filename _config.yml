@@ -7,7 +7,7 @@ title: "Loosely coupled"
 #description: > # this means to ignore newlines until "email:"
 #   A Jekyll theme - Medium inspired
 
-email: bertjan.broeksema@list.lu
+email: bertjan.broeksema@bigdatarepublic.nl
 #blog logo
 logo: "/assets/images/bb_logo.png"
 # blog cover
@@ -24,13 +24,6 @@ baseurl: ""
 
 # social icons and sharing options
 social:
-
-#  - icon:	facebook
-#    url:	https://facebook.com/???
-#    desc: Connect with me facebook
-#    share_url: //www.facebook.com/sharer.php
-#    share_title: ?t=
-#    share_link: "&amp;u="
   - icon: linkedin
     url: https://lu.linkedin.com/in/bertjanbroeksema/
     desc: Find me on linked in
