@@ -48,10 +48,3 @@ social:
     share_url: http://twitter.com/share
     share_title: ?text=
     share_link: "&amp;url="
-
-  - icon:	google-plus
-    url: https://plus.google.com/116835827224883282682/posts
-    desc:	Add me on google+
-    share_url: https://plus.google.com/share
-    share_title: "?title="
-    share_link: "&amp;url="
